@@ -12,3 +12,7 @@
 ###> idea ###
 .idea
 ###< idea ###
+
+###> images ###
+public/images/
+###< images ###
