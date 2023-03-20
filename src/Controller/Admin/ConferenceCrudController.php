@@ -14,13 +14,12 @@ class ConferenceCrudController extends AbstractCrudController
         return Conference::class;
     }
 
-
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('city');
         yield TextField::new('year');
         yield BooleanField::new('isInternational');
         yield TextField::new('slug')
-            ->setFormTypeOption('disabled',true);
+            ->setFormTypeOption('disabled', true);
     }
 }

@@ -13,7 +13,8 @@ class TwigEventSubscriber implements EventSubscriberInterface
     public function __construct(
         private readonly Environment $twig,
         private readonly ConferenceRepository $conferenceRepository
-    ) {}
+    ) {
+    }
 
     public function onKernelController(ControllerEvent $event): void
     {

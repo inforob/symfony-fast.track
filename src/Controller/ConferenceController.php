@@ -19,16 +19,16 @@ class ConferenceController extends AbstractController
     public function index(ConferenceRepository $conferenceRepository): Response
     {
         return $this->render('conference/index.html.twig', [
-           'conferences' => $conferenceRepository->findAll()
+           'conferences' => $conferenceRepository->findAll(),
         ]);
     }
 
     #[Route('/conference/{slug}', name: 'conference')]
-    public function show(Request $request,Conference $conference,CommentRepository $commentRepository,string $photoDir) : Response
+    public function show(Request $request, Conference $conference, CommentRepository $commentRepository, string $photoDir): Response
     {
         $form = $this->createForm(CommentFormType::class, new Comment());
-        $form->handleRequest($request) ;
-        if($form->isSubmitted() && $form->isValid()) {
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             /** @var Comment $comment */
             $comment = $form->getData();
             $comment->setConference($conference);
@@ -38,15 +38,14 @@ class ConferenceController extends AbstractController
                 try {
                     $photo->move($photoDir, $filename);
                 } catch (\Exception $exception) {
-                   // exception not catched
+                    // exception not catched
                 }
                 $comment->setPhotoFilename($filename);
             }
 
-            $commentRepository->save($comment,true);
+            $commentRepository->save($comment, true);
 
             return new RedirectResponse($request->headers->get('referer'));
-
         }
         $offset = max(0, $request->query->getInt('offset'));
         $paginator = $commentRepository->getCommentPaginator($conference, $offset);
@@ -56,7 +55,7 @@ class ConferenceController extends AbstractController
             'conference' => $conference,
             'comments' => $paginator,
             'previous' => $offset - CommentRepository::PAGINATOR_PER_PAGE,
-            'next' => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE)
+            'next' => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
         ]);
     }
 }

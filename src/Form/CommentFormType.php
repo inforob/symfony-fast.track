@@ -17,8 +17,8 @@ class CommentFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('author' , TextType::class,[
-                'label' => 'Your name'
+            ->add('author', TextType::class, [
+                'label' => 'Your name',
             ])
             ->add('text')
             ->add('email', EmailType::class)
@@ -26,8 +26,8 @@ class CommentFormType extends AbstractType
                 'required' => false,
                 'mapped' => false,
                 'constraints' => [
-                    new Image(['maxSize' => '1024k'])
-                ]
+                    new Image(['maxSize' => '1024k']),
+                ],
             ])
             ->add('submit', SubmitType::class)
         ;

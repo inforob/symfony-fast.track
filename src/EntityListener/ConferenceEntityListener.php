@@ -8,9 +8,9 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ConferenceEntityListener
 {
-
     public function __construct(private readonly SluggerInterface $slugger)
-    {}
+    {
+    }
 
     public function prePersist(Conference $conference, LifecycleEventArgs $event)
     {
