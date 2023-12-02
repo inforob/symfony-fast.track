@@ -21,9 +21,10 @@
         "twig/intl-extra": "^3.5"
     },
     "require-dev": {
-        "symfony/maker-bundle": "^1.48",
+        "doctrine/doctrine-fixtures-bundle": "^3.5",
         "friendsofphp/php-cs-fixer": "^v3.15.1",
-        "phpstan/phpstan": "^0.12.40"
+        "phpstan/phpstan": "^0.12.40",
+        "symfony/maker-bundle": "^1.48"
     },
     "config": {
         "allow-plugins": {
